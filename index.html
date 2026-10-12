@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Commission breakdown · Radius</title>
+<link rel="stylesheet" href="radius/styles.css"><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="rcs-app" id="app">
+  <aside class="rcs-rail compact-rail" aria-label="Radius navigation">
+    <img class="rail-logo" src="radius/assets/logo-mark-light.svg" alt="Radius">
+    <div id="railNav" class="rail-nav"></div>
+    <div class="rcs-spacer"></div>
+    <button class="rcs-melpill rail-mel" data-action="mel" aria-label="Open Mel Copilot" title="Mel Copilot"><img src="radius/assets/mel-icon.svg" alt="" class="rcs-melmark"></button>
+    <button class="rcs-nav" data-action="settings" title="Prototype settings" aria-label="Prototype settings"><span data-icon="sliders-horizontal"></span></button>
+    <button class="profile-avatar rcs-pav" data-action="settings" aria-label="Change prototype role">AM</button>
+  </aside>
+  <main class="rcs-content">
+    <header class="page-header phead" aria-label="Commission breakdown">
+      <button class="rds-btn rds-btn--ghost rds-btn--icon phead-back" data-action="transaction" aria-label="Back to transaction" title="Back to transaction"><span data-icon="arrow-left"></span></button>
+      <div class="vsep" aria-hidden="true"></div>
+      <h1 class="ptitle">Commission breakdown</h1>
+      <span class="rds-badge rds-badge--outline">Sale</span>
+      <span class="rds-badge rds-badge--blue"><span data-icon="calendar"></span>Closing Oct 30, 2026</span>
+      <div class="spacer"></div>
+      <div class="phead-status" id="pageStatus" aria-live="polite"></div>
+    </header>
+    <div class="workspace">
+      <aside class="overview" aria-label="Transaction sides and agent allocations">
+        <div class="overview-top"><h2>Transaction overview</h2></div>
+        <div id="transactionMetrics" class="transaction-metrics"></div>
+        <nav id="sideList" class="side-list" aria-label="Select a breakdown"></nav>
+        <div class="overview-foot"><span data-icon="info"></span><span>Select a side for its overview, or an agent for their breakdown.</span></div>
+      </aside>
+      <section class="detail" aria-label="Selected commission breakdown">
+        <div id="detailHead" class="detail-head"></div>
+        <div class="detail-scroll" id="detailScroll"><div id="detailBody" class="detail-body"></div></div>
+        <div class="dock-zone"><div id="confirmDock" class="rds-card confirm-dock"></div></div>
+      </section>
+    </div>
+  </main>
+</div>
+<div id="overlayRoot"></div>
+<div id="toast" class="rds-toast app-toast" role="status" aria-live="polite" hidden></div>
+<div id="selectionAnnouncement" class="sr-only" aria-live="polite"></div>
+<script src="icons.js"></script><script src="app.js"></script>
+</body></html>
