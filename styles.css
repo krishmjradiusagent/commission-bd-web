@@ -118,7 +118,9 @@
 .agent-row.selected{background:transparent;border-color:transparent}
 .agent-row.selected:before{display:none}
 .agent-row.selected .avatar{border-color:var(--primary);box-shadow:0 0 0 3px var(--tint-indigo-bg)}
-.agent-actions .view-agent.selected-action{background:transparent;color:var(--primary);border-color:transparent;font-weight:600}
+.agent-actions .view-agent{width:28px;min-width:28px;height:28px;padding:0;justify-content:center;border-radius:999px;background:#f4f4f5;color:var(--muted-foreground);border:1px solid transparent}
+.agent-actions .view-agent .icon{width:16px;height:16px}
+.agent-actions .view-agent.selected-action{background:#fff;color:var(--primary);border:1px solid #e5e5e5;box-shadow:none}
 
 /* Reference sample sections use Radius Item, Card and Select primitives in light mode. */
 [data-theme="light"] .reference-section{display:block;margin-bottom:24px}
@@ -294,11 +296,13 @@
 .detail-body .reference-positive,
 .detail-body .total-row .num{color:var(--tint-green-fg)}
 
-/* Edit / remove action pair with a vertical separator. */
-.row-actions{width:76px;gap:4px}
-.calc-row:not(.has-actions) .amount-col{padding-right:88px}
-.row-action-sep{width:1px;height:14px;background:var(--border);flex:none;align-self:center}
-.row-actions .row-action-remove{color:var(--muted-foreground)}
+/* Row actions: blue edit, red delete, no separator. */
+.row-actions{width:auto;gap:2px}
+.calc-row:not(.has-actions) .amount-col{padding-right:64px}
+.row-actions .rds-btn{color:var(--muted-foreground)}
+.row-actions .row-action-edit{color:var(--primary)}
+.row-actions .row-action-edit:hover{color:var(--primary)}
+.row-actions .row-action-remove{color:var(--destructive)}
 .row-actions .row-action-remove:hover{color:var(--destructive)}
 
 /* Section separators between breakdown blocks (match credit/referral list rhythm). */
@@ -332,3 +336,326 @@
 .detail-body > .section-sep + .breakdown-list{
   margin-top:0;
 }
+
+
+/* Collapsible section headers — Maple-style minimize chevrons on list sections. */
+.collapse-section{display:block;margin:0}
+.collapse-summary{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  width:100%;
+  min-height:40px;
+  padding:4px 0;
+  cursor:pointer;
+  user-select:none;
+}
+.collapse-summary::-webkit-details-marker{display:none}
+.collapse-summary::marker{content:''}
+.collapse-summary-main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px}
+.collapse-summary-main h3{margin:0;font-size:14px;font-weight:600;line-height:22px}
+.collapse-summary .reference-caption{margin:0}
+.collapse-meta{flex:0 0 auto;font-weight:600;color:var(--foreground)}
+.collapse-chevron{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;
+  height:28px;
+  margin-right:-6px;
+  color:var(--neutral-600, #525252);
+  transition:transform 160ms ease;
+}
+.collapse-chevron .icon{width:18px;height:18px;stroke-width:2}
+.collapse-section[open] > .collapse-summary .collapse-chevron{transform:rotate(90deg)}
+.collapse-summary:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:8px}
+.collapse-body{padding:0 0 4px}
+.collapse-footer{display:flex;justify-content:flex-end;padding-top:8px}
+.detail-body > .collapse-section + .collapse-section{
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid var(--border);
+}
+.detail-body > .section-sep + .collapse-section{
+  margin-top:0;
+}
+.detail-body > .collapse-section.reference-section{
+  margin-bottom:0;
+}
+
+/* Compact right-panel cards. Keep the existing rows and values unchanged. */
+.detail-head{padding-top:12px;padding-bottom:12px}
+.detail-body{padding-top:12px}
+.detail-body > .detail-card,
+.detail-body > .reference-section,
+.detail-body > .activity-card{
+  display:block;
+  margin:12px 0 0;
+  padding:0;
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:var(--radius-card);
+  background:var(--card);
+  box-shadow:none;
+}
+.detail-body > .reference-section + .reference-section,
+.detail-body > .collapse-section + .collapse-section,
+.detail-body > .breakdown-list + .reference-section,
+.detail-body > .section-sep + .collapse-section{
+  margin-top:12px;
+  padding-top:0;
+  border-top:1px solid var(--border);
+}
+.detail-card-head{
+  min-height:44px;
+  padding:12px 16px 8px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.detail-card-head h3{line-height:20px}
+.detail-card-meta{font-weight:600;line-height:20px;white-space:nowrap}
+.detail-card-body{padding:0 16px 14px}
+.detail-card-body .reference-list,
+.detail-card-body .breakdown-list{margin:0}
+.detail-card-body .reference-plan-row{padding-block:9px}
+.detail-card-body .reference-net{margin:12px 0 0}
+.activity-card .collapse-summary{min-height:44px;padding:8px 16px;cursor:pointer}
+.activity-card .collapse-body{padding:0 16px 14px}
+.activity-card .collapse-chevron{margin-right:-4px}
+
+/* All right-panel cards have the same visible boundary and disclosure chevron. */
+.detail-body > .detail-card,
+.detail-body > .reference-section{
+  box-shadow:var(--shadow-sm);
+}
+.detail-card-summary{
+  list-style:none;
+  min-height:44px;
+  padding:12px 16px 8px;
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  cursor:pointer;
+  user-select:none;
+}
+.detail-card-summary::-webkit-details-marker{display:none}
+.detail-card-summary::marker{content:''}
+.detail-card-summary > div,.detail-card-summary h3{min-width:0;flex:1;margin:0;line-height:20px}
+.detail-card-summary .collapse-chevron{align-self:center;margin:0 -4px 0 0}
+.detail-card[open] > .detail-card-summary .collapse-chevron{transform:rotate(90deg)}
+
+/* Keep the award rate aligned with monetary values that reserve two action slots. */
+.award-row .row-actions{width:62px;justify-content:flex-start}
+
+/* Compact selected-agent identity. */
+.detail-title-row h2{font-size:16px}
+
+/* Card header order: chevron, title, amount. Keep title and amount on one line. */
+.detail-card-summary{align-items:center;padding:10px 16px}
+.detail-card-summary .collapse-chevron{order:0;align-self:center;margin:0;flex:none}
+.detail-card-summary > div{order:1;flex:1;min-width:0}
+.detail-card-summary > h3{order:1;flex:1;min-width:0;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.detail-card-summary > div h3{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.detail-card-summary .detail-card-meta{order:2;flex:none;margin-left:auto;white-space:nowrap}
+
+/* One fixed value column. Every amount ends on the same right edge. */
+.calc-row{display:grid;grid-template-columns:minmax(0,1fr) 128px 62px;column-gap:12px}
+.calc-label{grid-column:1;min-width:0}
+.amount-col{display:contents}
+.calc-row .num{grid-column:2;min-width:0;text-align:right}
+.calc-row .row-actions{grid-column:3;width:62px;justify-content:flex-start}
+.calc-row:not(.has-actions) .amount-col{padding-right:0}
+.reference-item .rds-item__actions{min-width:128px;justify-content:flex-end}
+/* Row actions are available on hover and keyboard focus without changing value alignment. */
+.calc-row .row-actions{opacity:0;visibility:hidden;transition:opacity .15s ease}
+.calc-row:hover .row-actions,.calc-row:focus-within .row-actions{opacity:1;visibility:visible}
+
+/* Confirmation dock matches the mobile payout copy. */
+.dock-summary{display:flex;align-items:center;gap:24px;min-width:240px}
+.dock-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+.dock-copy strong{font-size:14px;font-weight:600;color:var(--foreground);line-height:20px}
+.dock-copy small{font-size:13px;color:var(--muted-foreground);line-height:18px}
+.dock-amount{margin-left:auto;font-size:24px;font-weight:600;letter-spacing:-.025em;color:var(--foreground)}
+
+/* Full-width sticky payout bar spans the transaction overview and breakdown panes. */
+.dock-zone{position:fixed;z-index:20;left:72px;right:8px;bottom:8px;padding:0;background:transparent}
+.confirm-dock{width:100%;max-width:none;padding:16px 18px;box-shadow:var(--shadow-md)}
+@media(max-width:720px){.dock-zone{left:0;right:0;bottom:0;padding:8px 10px calc(8px + env(safe-area-inset-bottom))}.confirm-dock{padding:14px 16px}}
+
+/* Dark payout bar. */
+.confirm-dock{background:var(--neutral-900);color:var(--neutral-0);border-color:var(--neutral-800)}
+.dock-copy strong,.dock-amount{color:var(--neutral-0)}
+.dock-copy small{color:var(--neutral-400)}
+.dock-actions .dock-activity{color:var(--neutral-0);border-color:var(--neutral-700);background:transparent}
+.dock-actions .dock-activity:hover{background:var(--neutral-800)}
+
+/* Dark payout bar: inset from the app edge with explicit high-contrast content. */
+.dock-zone{left:80px;right:16px;bottom:16px}
+.confirm-dock{border:0;background:#171717;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.22)}
+.confirm-dock .dock-copy strong,.confirm-dock .dock-amount{color:#fff}
+.confirm-dock .dock-copy small{color:#d4d4d4}
+.confirm-dock .dock-actions .rds-btn,.confirm-dock .dock-actions .rds-btn svg{color:#fff}
+.confirm-dock .dock-actions .dock-activity{color:#fff;border-color:#525252;background:transparent}
+.confirm-dock .dock-actions .dock-activity svg{color:#fff}
+.confirm-dock .dock-actions .rds-badge{color:#171717}
+@media(max-width:720px){.dock-zone{left:0;right:0;bottom:0}}
+
+/* Keep the payout label and amount together, like the mobile payout card. */
+.dock-summary{gap:16px;min-width:0}
+.dock-copy{gap:0}
+.dock-amount{margin-left:0;color:var(--tint-green-fg)}
+.confirm-dock .dock-amount{color:#86efac}
+
+/* One-line dark payout summary with subdued separators. */
+.dock-summary{align-items:center;gap:14px}
+.dock-title{font-size:14px;font-weight:600;color:#fff;white-space:nowrap}
+.dock-side{font-size:13px;color:#d4d4d4;white-space:nowrap}
+.dock-separator{width:1px;height:20px;background:#3f3f46;flex:none}
+.dock-summary .dock-amount{color:#86efac;white-space:nowrap}
+
+/* Dark-mode side badge. */
+.dock-side-badge{display:inline-flex;align-items:center;min-height:24px;padding:0 8px;border:1px solid #1e3a8a;border-radius:999px;background:#172554;color:#93c5fd;font-size:12px;font-weight:600;white-space:nowrap}
+
+/* Subtle positive-state treatment for Net Payout cards. */
+.reference-net{background:#f6fbf7;border-color:#dcefe0}
+
+/* Override the light-theme card surface with the intended payout tint. */
+[data-theme="light"] .reference-net{background:#f0faf2;border-color:#d4ead8}
+
+/* Fixed payout bar must not cover the final detail card. */
+.detail-body{padding-bottom:168px}
+@media(max-width:720px){.detail-body{padding-bottom:148px}}
+
+/* Latest activity action sits in its header without affecting the disclosure control. */
+.reference-section:has(.activity-view-all){position:relative}
+.activity-view-all{position:absolute;top:8px;right:16px;z-index:1;color:var(--primary);font-size:12px;font-weight:600}
+.activity-view-all:hover{color:var(--primary);background:var(--tint-indigo-bg)}
+
+/* Center the calendar icon in the closing-date badge. */
+.page-header.phead .rds-badge--blue{display:inline-flex;align-items:center}
+.page-header.phead .rds-badge--blue .icon{display:block;margin:0;vertical-align:initial}
+
+/* Default: values share the card’s right edge with header amounts like $9,000.
+   Hover/focus: insert the action column and shift the value left. */
+.calc-row{grid-template-columns:minmax(0,1fr) 128px;column-gap:12px;row-gap:0;transition:grid-template-columns .15s ease}
+.calc-row .row-actions{display:none;width:62px;overflow:hidden;pointer-events:none}
+.calc-row.has-actions:hover,.calc-row.has-actions:focus-within{grid-template-columns:minmax(0,1fr) 128px 62px}
+.calc-row.has-actions:hover .row-actions,.calc-row.has-actions:focus-within .row-actions{display:flex;pointer-events:auto}
+
+/* A quiet dotted blue underline marks values that can be edited. */
+.calc-row.has-actions .num{border-bottom:1px dashed #93c5fd}
+.calc-row.has-actions:hover .num,.calc-row.has-actions:focus-within .num{border-bottom-color:var(--primary)}
+
+/* Underline only the editable number itself. */
+.calc-row.has-actions .num{border-bottom:0;text-decoration-line:underline;text-decoration-style:solid;text-decoration-color:#93c5fd;text-decoration-thickness:1px;text-underline-offset:4px}
+.calc-row.has-actions:hover .num,.calc-row.has-actions:focus-within .num{text-decoration-color:var(--primary)}
+
+/* No detail header band when an agent breakdown is selected. */
+.detail-head:empty{display:none}
+
+/* Tighten only the space before the first breakdown row. */
+.detail-body{padding-top:6px}
+.detail-body > .breakdown-list:first-child .calc-row:first-child{min-height:38px;padding-top:6px}
+
+/* Agent rows are the selection surface; selected state spans the full row. */
+.agent-row{cursor:pointer;user-select:none}
+.agent-row:not(.selected):hover{background:#f8f9ff}
+.agent-row.selected{background:#eef2ff;border:1px solid #c7d2fe;border-radius:10px;position:relative}
+.agent-row.selected::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:3px;background:var(--primary)}
+.agent-row.selected .avatar{border-color:var(--primary);box-shadow:0 0 0 2px #dbeafe}
+.agent-actions .view-agent.selected-action{height:28px;width:28px;padding:0;border:1px solid #e5e5e5;border-radius:999px;background:#fff;color:var(--primary)}
+.agent-actions .view-agent.selected-action .icon{width:16px;height:16px;color:var(--primary)}
+.agent-row:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+
+/* Side header: title + award left, amount + agent count right. */
+.side-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:0 4px}
+.side-head-left,.side-head-right{display:flex;flex-direction:column;min-width:0}
+.side-head-left{align-items:flex-start;gap:2px}
+.side-head-right{align-items:flex-end;gap:2px;flex:none}
+.side-head .side-heading{height:auto;min-height:0;line-height:20px}
+.side-award{display:inline-flex;align-items:center;gap:2px;color:var(--muted-foreground);font-size:12px;line-height:18px}
+.side-award .award-text{color:var(--muted-foreground);font-size:12px;font-weight:400}
+.side-award .award-edit{width:22px;height:22px;color:var(--muted-foreground)}
+.side-head .num{font-size:14px;font-weight:600;line-height:20px}
+.side-count{margin-left:0;font-size:12px;color:var(--muted-foreground);line-height:18px;white-space:nowrap}
+
+/* Negative editable values use a red underline that matches the amount. */
+.calc-row.has-actions .num.reference-negative{text-decoration-color:#fca5a5}
+.calc-row.has-actions:hover .num.reference-negative,
+.calc-row.has-actions:focus-within .num.reference-negative{text-decoration-color:var(--destructive)}
+
+/* Prototype screen switcher sits above Mel in the rail. */
+.screen-switcher{position:relative;display:flex;justify-content:center;margin:0 0 8px}
+.screen-switcher-btn{width:40px;height:40px;border-radius:12px;color:#d4d4d8;background:transparent}
+.screen-switcher-btn.is-approved{color:#86efac}
+.screen-switcher-btn[aria-expanded="true"]{background:rgba(255,255,255,.08);color:#fff}
+.screen-switcher-menu{position:absolute;left:calc(100% + 10px);bottom:0;min-width:220px;padding:6px;border:1px solid var(--border);border-radius:12px;background:var(--popover);box-shadow:var(--shadow-lg);z-index:80}
+.screen-switcher-option{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:0;border-radius:8px;background:transparent;color:var(--foreground);font-size:13px;font-weight:500;text-align:left;cursor:pointer}
+.screen-switcher-option:hover{background:var(--muted)}
+.screen-switcher-option.selected{background:var(--tint-indigo-bg);color:var(--primary)}
+.screen-switcher-option .icon{width:16px;height:16px}
+
+/* Post-approve actions in the floating payout bar. */
+.dock-post-actions{display:flex;align-items:center;gap:4px}
+.dock-post-actions .rds-btn,.dock-post-btn{height:36px;padding:0 10px;gap:6px;color:#e5e5e5!important;font-size:13px;font-weight:500}
+.confirm-dock .dock-post-actions .rds-btn:hover,.confirm-dock .dock-post-btn:hover{background:rgba(255,255,255,.08);color:#fff!important}
+.confirm-dock .dock-post-actions .rds-btn .icon,.confirm-dock .dock-post-btn .icon{width:15px;height:15px;color:#e5e5e5}
+
+
+/* Keep card header totals and list amounts on one shared value column. */
+.detail-card-meta{width:128px;text-align:right;box-sizing:border-box}
+.reference-item .rds-item__actions{width:128px;min-width:128px;justify-content:flex-end}
+.reference-item .rds-item__actions .num{width:100%;text-align:right}
+.detail-card-body .reference-net .num{width:128px;text-align:right;margin-left:auto;box-sizing:border-box}
+
+/* Net payout amounts must share the same right edge as $9,000. */
+.detail-card-body .reference-net{padding-right:0}
+.detail-card-body .reference-net .num{width:128px;margin-left:auto;margin-right:0;text-align:right}
+
+
+/* Post-approve actions in the floating payout bar. */
+.dock-post-actions{display:flex;align-items:center;gap:8px}
+.dock-post-actions .rds-btn,.dock-post-btn{height:36px;padding:0 12px;gap:6px;font-size:13px;font-weight:500;border-radius:8px}
+.confirm-dock .dock-post-primary{background:var(--primary)!important;color:#fff!important;border:1px solid transparent}
+.confirm-dock .dock-post-primary:hover{filter:brightness(1.05)}
+.confirm-dock .dock-post-primary .icon{color:#fff}
+.confirm-dock .dock-post-secondary{background:#3f3f46!important;color:#f5f5f5!important;border:1px solid #52525b}
+.confirm-dock .dock-post-secondary:hover{background:#52525b!important;color:#fff!important}
+.confirm-dock .dock-post-secondary .icon{width:15px;height:15px;color:#e5e5e5}
+.confirm-dock .dock-post-actions .rds-btn .icon,.confirm-dock .dock-post-btn .icon{width:15px;height:15px}
+
+
+/* Approved dock: primary View CDA, secondary gray actions. */
+.confirm-dock .dock-post-actions{display:flex;align-items:center;gap:8px}
+.confirm-dock .dock-post-actions .rds-btn{height:36px;padding:0 12px;gap:6px;font-size:13px;font-weight:500;border-radius:8px}
+.confirm-dock .dock-post-actions .rds-btn--default{background:var(--primary)!important;color:#fff!important;border-color:transparent}
+.confirm-dock .dock-post-actions .rds-btn--default .icon{color:#fff}
+.confirm-dock .dock-post-actions .rds-btn--ghost{background:#3f3f46!important;color:#f5f5f5!important;border:1px solid #52525b}
+.confirm-dock .dock-post-actions .rds-btn--ghost:hover{background:#52525b!important;color:#fff!important}
+.confirm-dock .dock-post-actions .rds-btn .icon{width:15px;height:15px}
+
+
+/* Dock secondary actions use DS dark-mode secondary tokens on the dark bar. */
+.confirm-dock .dock-post-actions .rds-btn--secondary{
+  background:var(--neutral-800)!important;
+  color:var(--neutral-50)!important;
+  border:1px solid transparent;
+}
+.confirm-dock .dock-post-actions .rds-btn--secondary:hover{
+  background:var(--neutral-700)!important;
+  color:var(--neutral-50)!important;
+}
+.confirm-dock .dock-post-actions .rds-btn--secondary .icon{color:var(--neutral-50)}
+.confirm-dock .dock-post-actions .rds-btn--ghost{
+  background:var(--neutral-800)!important;
+  color:var(--neutral-50)!important;
+  border:1px solid transparent;
+}
+
+
+/* Tighter horizontal padding on the floating payout bar. */
+.confirm-dock{padding-left:16px;padding-right:16px}

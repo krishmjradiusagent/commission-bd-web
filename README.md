@@ -2,9 +2,11 @@
 
 Standalone HTML/CSS/JS redesign prototype of the Radius **Commission breakdown** web surface.
 
-## Preview
+## Live preview
 
-Open `index.html` in a browser, or serve the folder:
+https://krishmjradiusagent.github.io/commission-bd-web/
+
+## Local preview
 
 ```bash
 python3 -m http.server 4187
