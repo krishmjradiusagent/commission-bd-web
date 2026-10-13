@@ -666,3 +666,14 @@
 
 /* Tighter horizontal padding on the floating payout bar. */
 .confirm-dock{padding-left:16px;padding-right:16px}
+
+
+/* Agent view keeps the personal commission summary separate from the side breakdown. */
+.agent-payout-summary{display:grid;gap:3px;padding:4px 0 18px}
+.agent-payout-summary>span,.agent-payout-summary small{font-size:13px;line-height:18px;color:var(--muted-foreground)}
+.agent-payout-summary strong{font-size:28px;line-height:34px;font-weight:600;letter-spacing:-.025em;color:var(--foreground)}
+.agent-plan-control{display:grid;gap:6px;margin:0 0 16px}
+.agent-plan-control .rds-select{width:min(300px,100%)}
+.agent-commission-rows{margin-bottom:20px}
+.side-payout-rows{margin:14px 0 18px}
+.detail-card-body>.reference-section{margin-top:12px}
