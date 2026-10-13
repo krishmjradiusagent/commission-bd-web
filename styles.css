@@ -564,6 +564,8 @@
 /* Agent rows are the selection surface; selected state spans the full row. */
 .agent-row{cursor:pointer;user-select:none}
 .agent-row:not(.selected):hover{background:#f8f9ff}
+/* Ally Mitchell rows use the same indigo hover as the Additional agent action. */
+.agent-row[data-agent="ally"]:hover{background:var(--tint-indigo-bg)}
 .agent-row.selected{background:#eef2ff;border:1px solid #c7d2fe;border-radius:10px;position:relative}
 .agent-row.selected::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:3px;background:var(--primary)}
 .agent-row.selected .avatar{border-color:var(--primary);box-shadow:0 0 0 2px #dbeafe}
