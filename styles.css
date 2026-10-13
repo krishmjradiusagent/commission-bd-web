@@ -622,9 +622,6 @@
 .reference-item .rds-item__actions .num{width:100%;text-align:right}
 .detail-card-body .reference-net .num{width:128px;text-align:right;margin-left:auto;box-sizing:border-box}
 
-/* Net payout amounts must share the same right edge as $9,000. */
-.detail-card-body .reference-net{padding-right:0}
-.detail-card-body .reference-net .num{width:128px;margin-left:auto;margin-right:0;text-align:right}
 
 
 /* Post-approve actions in the floating payout bar. */
